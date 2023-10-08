@@ -8,24 +8,22 @@ public class Player : MonoBehaviour
     //public을 붙여서 유니티에서도 조작이 가능합니다.
     float h, v;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public float rotateSpeed = 10.0f;
 
     void FixedUpdate()
     {
         h = Input.GetAxis("Horizontal"); // -1, 0 ,1
         v = Input.GetAxis("Vertical"); // -1, 0 ,1
 
-        transform.position += new Vector3(h, 0, v) * Speed * Time.deltaTime;
+        Vector3 dir = new Vector3(h, 0, v);
+        if(!(h == 0 && v == 0))
+        {
+            transform.position += dir * Speed * Time.deltaTime;
+            transform.rotation = 
+                Quaternion.Lerp(transform.rotation,
+                Quaternion.LookRotation(dir),Time.deltaTime
+                * rotateSpeed);
+        }
+        //transform.position += new Vector3(h, 0, v) * Speed * Time.deltaTime;
     }
 }
