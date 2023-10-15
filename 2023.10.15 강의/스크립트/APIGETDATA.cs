@@ -6,6 +6,14 @@ using UnityEngine.Networking;
 public class APIGETDATA : MonoBehaviour
 {
     public string serverURL = "http://127.0.0.1:5000/api/data";
+
+    [System.Serializable]
+    public class DataItem
+    {
+        public int id;
+        public string name;
+    }
+
     private void Start()
     {
         
@@ -22,7 +30,17 @@ public class APIGETDATA : MonoBehaviour
             if(request.result == UnityWebRequest.Result.Success)
             {
                 string jsonResponse = request.downloadHandler.text;
-                Debug.Log("Received:" +  jsonResponse);
+                string decodeResponse = System.Text.RegularExpressions.Regex.
+                    Unescape(jsonResponse);
+
+                DataItem[] dataItems = JsonUtility.FromJson
+                    <DataItem[]>(decodeResponse);
+
+                foreach(var item in dataItems)
+                {
+                    Debug.Log("ID: " + item.id + ", Name: " + item.name);
+                }
+                //Debug.Log("Received:" +  jsonResponse);
             }
             else
             {
