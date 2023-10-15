@@ -34,7 +34,7 @@ public class APIGETDATA : MonoBehaviour
                     Unescape(jsonResponse);
 
                 DataItem[] dataItems = JsonUtility.FromJson
-                    <DataItem[]>(decodeResponse);
+                    <DataItem[]>("{\"items\":"+decodeResponse+"}");
 
                 foreach(var item in dataItems)
                 {
