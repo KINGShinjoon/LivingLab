@@ -14,6 +14,12 @@ public class APIGETDATA : MonoBehaviour
         public string name;
     }
 
+    [System.Serializable]
+    public class DataItemWrapper
+    {
+        public DataItem[] items;
+    }
+
     private void Start()
     {
         
@@ -33,10 +39,11 @@ public class APIGETDATA : MonoBehaviour
                 string decodeResponse = System.Text.RegularExpressions.Regex.
                     Unescape(jsonResponse);
 
-                DataItem[] dataItems = JsonUtility.FromJson
-                    <DataItem[]>("{\"items\":"+decodeResponse+"}");
+                DataItemWrapper dataWrapper = 
+                    JsonUtility.FromJson<DataItemWrapper>
+                    ("{\"items\":"+decodeResponse+"}");
 
-                foreach(var item in dataItems)
+                foreach(var item in dataWrapper.items)
                 {
                     Debug.Log("ID: " + item.id + ", Name: " + item.name);
                 }
