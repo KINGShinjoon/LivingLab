@@ -1,13 +1,10 @@
-import React from 'react';
+import logo from './logo.svg';
 import './App.css';
 import CanvasComponent from './CanvasComponent';
-import ApiComponets from './ApiComponent';
-
 function App() {
   return (
     <div className="App">
-      <CanvasComponent />
-      <ApiComponets/>
+      <CanvasComponent/>
     </div>
   );
 }
