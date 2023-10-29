@@ -1,4 +1,8 @@
-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
+sk-ILSgvㄱㄷㄴ
+nngh59ZrKㄻㅂ
+YadA2bT3Blbㅅㅈ
+kFJXLXY2biQHBtㅇㅈ
+UGbgRxPqbㅊㅋ
 
 import os
 import openai
