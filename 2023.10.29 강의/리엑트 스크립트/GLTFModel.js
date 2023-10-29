@@ -14,4 +14,4 @@ function GLTFModel({ url }) {
 
   return <primitive ref={ref} object={gltf.scene} />;
 }
-export default GLTFLoader;
+export default GLTFModel;
